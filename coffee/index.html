@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apoie o desenvolvimento independente — KatoStudio Apps. Contribuições voluntárias via Stripe." />
+  <title>KatoStudio Coffee — Apoie o Dev</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0C0906;
+      --surface:      #161109;
+      --surface-2:    #1F180F;
+      --surface-3:    #2B2016;
+      --border:       #3A2C1E;
+      --border-light: #4E3D2A;
+      --accent:       #C98C4E;
+      --accent-2:     #E6C47A;
+      --accent-dim:   #C98C4E15;
+      --accent-glow:  #C98C4E2E;
+      --text-1:       #EDE0C8;
+      --text-2:       #9E8060;
+      --text-3:       #5A4432;
+      --green:        #7EA96B;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Jost', system-ui, sans-serif;
+      --radius:       5px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 900px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, #C98C4E0B 0%, transparent 68%);
+      bottom: -200px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: sticky; top: 0;
+      background: rgba(12, 9, 6, 0.90);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-brand-left {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .nav-brand-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+      margin: 0 14px;
+    }
+
+    .nav-brand-right {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-2); }
+    .nav-back::before { content: '←'; font-size: 13px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 100px 0 64px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 36px;
+      animation: fadeInUp 0.7s ease both;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.0;
+      letter-spacing: -0.015em;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.7s 0.08s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 480px;
+      margin: 0 auto 16px;
+      line-height: 1.85;
+      animation: fadeInUp 0.7s 0.16s ease both;
+    }
+
+    /* ─── ORNAMENTAL DIVIDER ─── */
+    .orn-rule {
+      display: flex;
+      align-items: center;
+      padding: 24px 0;
+      position: relative; z-index: 1;
+    }
+    .orn-rule::before, .orn-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .orn-rule-center {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 18px;
+    }
+    .orn-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-light); }
+    .orn-diamond {
+      width: 5px; height: 5px;
+      background: var(--text-3);
+      transform: rotate(45deg);
+      opacity: 0.45;
+    }
+
+    /* ─── TIERS ─── */
+    .tiers-section {
+      padding: 0 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tiers-menu {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.7s 0.24s ease both;
+    }
+
+    .tier-card {
+      display: flex;
+      align-items: center;
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      background: var(--surface-2);
+      gap: 20px;
+    }
+    .tier-card:last-child { border-bottom: none; }
+
+    .tier-card:hover, .tier-card.active {
+      background: var(--surface-3);
+    }
+
+    .tier-card-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: 1;
+      text-align: left;
+    }
+
+    .tier-emoji {
+      font-size: 22px;
+      width: 38px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .tier-label {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+
+    .tier-sublabel {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-3);
+    }
+
+    .tier-amount {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--accent);
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .tier-arrow {
+      color: var(--text-3);
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+      margin-left: 8px;
+    }
+    .tier-card:hover .tier-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* ─── PAYMENT METHODS ─── */
+    .payment-methods {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s 0.32s ease both;
+    }
+
+    .pm-badge {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-3);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    .pm-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+    .disclaimer {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 24px;
+      font-weight: 300;
+      text-align: center;
+      line-height: 1.7;
+      animation: fadeInUp 0.7s 0.38s ease both;
+    }
+
+    /* ─── TRUST BLOCK ─── */
+    .trust-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 56px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      animation: fadeInUp 0.7s 0.44s ease both;
+    }
+
+    .trust-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .trust-content {}
+
+    .trust-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--text-1);
+    }
+
+    .trust-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+    .footer-brand em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+      .hero { padding: 72px 0 48px; }
+      h1 { font-size: clamp(36px, 10vw, 56px); }
+      .tier-card { padding: 18px 20px; }
+      .trust-block { flex-direction: column; gap: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">
+        <span class="nav-brand-left">KatoStudio</span>
+        <div class="nav-brand-divider"></div>
+        <span class="nav-brand-right">Apps</span>
+      </a>
+      <a href="../" class="nav-back">Portfolio</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Contribuição voluntária</div>
+      <h1>
+        Compre um<br/><em>café ☕</em>
+      </h1>
+      <p class="hero-sub">
+        Meus apps são gratuitos porque acredito em software acessível.
+        Se algum deles já te ajudou, um café me ajuda a continuar
+        construindo ferramentas que respeitam você.
+      </p>
+    </div>
+  </section>
+
+  <div class="orn-rule" style="max-width:700px;margin:0 auto;padding:8px 32px;">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- TIERS -->
+  <section class="tiers-section">
+    <div class="container">
+
+      <div class="tiers-menu">
+        <!-- SUBSTITUA os href abaixo pelos seus Stripe Payment Links de teste -->
+        <!-- Instruções: veja STRIPE-SETUP.md na raiz do repositório -->
+        <a href="https://buy.stripe.com/test_8x25kDcESgi8880g7aco003" class="tier-card" target="_blank" rel="noopener">
+          <div class="tier-card-left">
+            <span class="tier-emoji">☕</span>
+            <div>
+              <div class="tier-label">Um cafezinho</div>
+              <div class="tier-sublabel">O essencial para o próximo feature</div>
+            </div>
+          </div>
+          <div class="tier-amount">$5</div>
+          <span class="tier-arrow">→</span>
+        </a>
+        <a href="https://buy.stripe.com/test_dRmeVd6gu2riewof36co000" class="tier-card" target="_blank" rel="noopener">
+          <div class="tier-card-left">
+            <span class="tier-emoji">☕☕</span>
+            <div>
+              <div class="tier-label">Café duplo</div>
+              <div class="tier-sublabel">Para as sessões de debug longas</div>
+            </div>
+          </div>
+          <div class="tier-amount">R$10</div>
+          <span class="tier-arrow">→</span>
+        </a>
+        <a href="https://buy.stripe.com/test_7sYeVdeN0c1S3RK8EIco001" class="tier-card" target="_blank" rel="noopener">
+          <div class="tier-card-left">
+            <span class="tier-emoji">🍱</span>
+            <div>
+              <div class="tier-label">Um almoço</div>
+              <div class="tier-sublabel">Mantém o dev alimentado e codando</div>
+            </div>
+          </div>
+          <div class="tier-amount">R$25</div>
+          <span class="tier-arrow">→</span>
+        </a>
+        <a href="https://buy.stripe.com/test_bJe6oH0Wa0ja9c4g7aco002" class="tier-card" target="_blank" rel="noopener">
+          <div class="tier-card-left">
+            <span class="tier-emoji">⭐</span>
+            <div>
+              <div class="tier-label">Sponsor</div>
+              <div class="tier-sublabel">Apoio máximo ao software livre</div>
+            </div>
+          </div>
+          <div class="tier-amount">R$50</div>
+          <span class="tier-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="payment-methods">
+        <div class="pm-badge"><span class="pm-dot"></span>Stripe Secure</div>
+        <div class="pm-badge">💳 Cartão</div>
+        <div class="pm-badge">🏦 Pix</div>
+        <div class="pm-badge">📱 Google Pay</div>
+        <div class="pm-badge">🍎 Apple Pay</div>
+      </div>
+
+      <p class="disclaimer">
+        Contribuição voluntária. Não libera funcionalidades.<br/>
+        Processado com segurança via Stripe (PCI-DSS nível 1).
+      </p>
+
+      <div class="trust-block">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-content">
+          <div class="trust-title">Pagamento 100% seguro</div>
+          <p class="trust-text">
+            Nunca armazeno dados do seu cartão. Toda transação é processada
+            diretamente pelo Stripe, certificado PCI-DSS nível 1 — o mesmo padrão
+            usado por Amazon e grandes bancos. Você é redirecionado para a página
+            oficial do Stripe para concluir o pagamento.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">KatoStudio <em>Apps</em></div>
+        <p class="footer-copy">© 2025 KatoStudio. Feito com Kotlin, Python e muito café.</p>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacidade</a>
+        <a href="terms.html">Termos</a>
+        <a href="mailto:contato@katostudio.dev">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.tier-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

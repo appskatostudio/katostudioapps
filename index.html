@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KatoStudio Apps — Aplicativos Android feitos com cuidado. Sem anúncios, sem atalhos." />
+  <title>KatoStudio Apps — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0C0906;
+      --surface:      #161109;
+      --surface-2:    #1F180F;
+      --surface-3:    #2B2016;
+      --border:       #3A2C1E;
+      --border-light: #4E3D2A;
+      --accent:       #C98C4E;
+      --accent-2:     #E6C47A;
+      --accent-dim:   #C98C4E15;
+      --accent-glow:  #C98C4E2E;
+      --text-1:       #EDE0C8;
+      --text-2:       #9E8060;
+      --text-3:       #5A4432;
+      --green:        #7EA96B;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Jost', system-ui, sans-serif;
+      --radius:       5px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 900px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, #C98C4E09 0%, transparent 68%);
+      bottom: -200px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: sticky; top: 0;
+      background: rgba(12, 9, 6, 0.90);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-brand-left {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .nav-brand-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+      margin: 0 14px;
+    }
+
+    .nav-brand-right {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text-1); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 120px 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 36px;
+      animation: fadeInUp 0.7s ease both;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(44px, 6.5vw, 82px);
+      line-height: 1.0;
+      letter-spacing: -0.015em;
+      margin-bottom: 36px;
+      animation: fadeInUp 0.7s 0.08s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeInUp 0.7s 0.14s ease both;
+    }
+
+    .hero-ornament-line { width: 48px; height: 1px; background: var(--border-light); }
+    .hero-ornament-dots { display: flex; gap: 5px; }
+    .hero-ornament-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0.7; }
+    .hero-ornament-dot:nth-child(2) { opacity: 0.4; }
+    .hero-ornament-dot:nth-child(3) { opacity: 0.2; }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 490px;
+      line-height: 1.85;
+      margin-bottom: 52px;
+      animation: fadeInUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s 0.28s ease both;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 26px;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      border-radius: var(--radius);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0C0906;
+      box-shadow: 0 2px 24px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 36px var(--accent-glow);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-2);
+      border: 1px solid var(--border-light);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-1);
+    }
+
+    /* ─── ORNAMENTAL DIVIDER ─── */
+    .orn-rule {
+      display: flex;
+      align-items: center;
+      padding: 4px 32px;
+      position: relative; z-index: 1;
+    }
+    .orn-rule::before, .orn-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .orn-rule-center {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 18px;
+    }
+    .orn-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-light); }
+    .orn-diamond {
+      width: 5px; height: 5px;
+      background: var(--text-3);
+      transform: rotate(45deg);
+      opacity: 0.45;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 64px 0;
+      background: var(--surface);
+      position: relative; z-index: 1;
+    }
+
+    .stat-item {
+      padding: 30px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--surface-2); }
+
+    .stat-value {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 27px;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 88px 0; position: relative; z-index: 1; }
+    .section-header { margin-bottom: 56px; }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(30px, 4.2vw, 48px);
+      letter-spacing: -0.015em;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+    h2 em { font-style: italic; color: var(--accent); }
+
+    .section-desc {
+      color: var(--text-2);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 460px;
+      line-height: 1.85;
+    }
+
+    /* ─── APP CARDS ─── */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .app-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--border);
+      transition: background 0.22s;
+    }
+
+    .app-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 52px rgba(0,0,0,0.45);
+    }
+    .app-card:hover::before { background: var(--accent); }
+
+    .app-card-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .app-icon {
+      width: 58px; height: 58px;
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      border: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .app-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .app-platform {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .app-desc {
+      color: var(--text-2);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      flex: 1;
+    }
+
+    .app-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: transparent;
+      color: var(--text-3);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .app-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .app-link::after { content: '↗'; font-size: 13px; margin-left: auto; }
+    .app-link:hover { color: var(--accent); }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .about-text h2 { margin-bottom: 28px; }
+
+    .about-text p {
+      color: var(--text-2);
+      font-weight: 300;
+      margin-bottom: 22px;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .about-text p:first-of-type {
+      font-size: 16px;
+      color: var(--text-1);
+      font-weight: 400;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .skill-group:last-child { border-bottom: none; }
+    .skill-group:hover { background: var(--surface-2); }
+
+    .skill-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .skill-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .pill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-1);
+      border-radius: 3px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* ─── CTA BRIDGE ─── */
+    .cta-bridge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 72px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bridge::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, #C98C4E07 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-bridge::after {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 140, 78, 0.07);
+      top: -70px; right: -70px;
+      box-shadow:
+        0 0 0 44px rgba(201, 140, 78, 0.025),
+        inset 0 0 0 36px rgba(201, 140, 78, 0.02);
+      pointer-events: none;
+    }
+
+    .cta-bridge .section-tag { justify-content: center; }
+    .cta-bridge h2 { margin-bottom: 16px; position: relative; }
+    .cta-bridge p {
+      color: var(--text-2);
+      font-size: 15px;
+      font-weight: 300;
+      max-width: 440px;
+      margin: 0 auto 40px;
+      line-height: 1.85;
+      position: relative;
+    }
+
+    .cta-bridge-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 52px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 8px;
+    }
+    .footer-brand em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 720px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(1),
+      .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .cta-bridge { padding: 48px 24px; }
+      h1 { font-size: clamp(38px, 9vw, 64px); }
+      .hero { padding: 80px 0 60px; }
+      .nav-links { gap: 16px; }
+      .nav-link { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-brand-left">KatoStudio</span>
+        <div class="nav-brand-divider"></div>
+        <span class="nav-brand-right">Apps</span>
+      </a>
+      <div class="nav-links">
+        <a href="#apps" class="nav-link">Apps</a>
+        <a href="#about" class="nav-link">Sobre</a>
+        <a href="coffee/" class="nav-cta">☕ Apoiar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Desenvolvedor Independente</div>
+      <h1>
+        Apps feitos<br/>com <em>cuidado.</em><br/>
+        Sem atalhos.
+      </h1>
+      <div class="hero-ornament">
+        <div class="hero-ornament-line"></div>
+        <div class="hero-ornament-dots">
+          <div class="hero-ornament-dot"></div>
+          <div class="hero-ornament-dot"></div>
+          <div class="hero-ornament-dot"></div>
+        </div>
+      </div>
+      <p class="hero-sub">
+        Desenvolvo ferramentas Android que respeitam sua privacidade,
+        funcionam offline e não te enchem de anúncios. Se um dos meus
+        apps te ajuda, considere apoiar o desenvolvimento.
+      </p>
+      <div class="hero-actions">
+        <a href="#apps" class="btn btn-primary">Ver apps →</a>
+        <a href="coffee/" class="btn btn-ghost">☕ Apoiar o dev</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="container">
+    <div class="stats-bar reveal">
+      <div class="stat-item">
+        <span class="stat-value">100%</span>
+        <span class="stat-label">Independente</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">0</span>
+        <span class="stat-label">Anúncios intrusivos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Kotlin</span>
+        <span class="stat-label">Android Nativo</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">Privacy</span>
+        <span class="stat-label">First</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- APPS -->
+  <section class="section" id="apps">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Portfólio</span>
+        <h2>Meus Aplicativos</h2>
+        <p class="section-desc">Cada app é construído para durar — código limpo, atualizações regulares, sem abandono.</p>
+      </div>
+
+      <div class="apps-grid">
+        <div class="app-card reveal">
+          <div class="app-card-header">
+            <div class="app-icon">📄</div>
+            <div>
+              <div class="app-name">FastPDF</div>
+              <div class="app-platform">Android · Google Play</div>
+            </div>
+          </div>
+          <p class="app-desc">
+            Leitor e gerenciador de PDFs focado em velocidade e leveza. Visualize, anote e compartilhe documentos sem precisar de internet. Zero coleta de dados desnecessária.
+          </p>
+          <div class="app-tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Offline</span>
+            <span class="tag">Privacy</span>
+          </div>
+          <a href="#" class="app-link">Ver na Google Play</a>
+        </div>
+
+        <div class="app-card reveal" style="opacity:0.4; pointer-events:none;">
+          <div class="app-card-header">
+            <div class="app-icon" style="font-size:22px;color:var(--text-3);">+</div>
+            <div>
+              <div class="app-name" style="color:var(--text-3);">Em breve</div>
+              <div class="app-platform">Próximo lançamento</div>
+            </div>
+          </div>
+          <p class="app-desc" style="color:var(--text-3);">
+            Novo app em desenvolvimento. Acompanhe as atualizações.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-tag">Sobre o Dev</span>
+          <h2>Engenheiro de<br/><em>Software</em></h2>
+          <p>
+            Desenvolvo software de ponta a ponta — da arquitetura ao deploy. Especializado em apps Android nativos com Kotlin e backends em Python.
+          </p>
+          <p>
+            Acredito que bom software é invisível: faz o que precisa, sem atrapalhar. Cada app que publico passa por ciclos de refinamento até chegar num nível de qualidade que eu mesmo usaria todo dia.
+          </p>
+          <p>
+            Trabalho como desenvolvedor independente, o que significa que cada linha de código é minha responsabilidade — e meu orgulho.
+          </p>
+          <div style="margin-top:36px;">
+            <a href="coffee/" class="btn btn-primary" style="font-size:11px;padding:12px 22px;">
+              ☕ Apoiar o trabalho
+            </a>
+          </div>
+        </div>
+
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <div class="skill-group-label">Mobile</div>
+            <div class="skill-pills">
+              <span class="pill">Kotlin</span>
+              <span class="pill">Android SDK</span>
+              <span class="pill">Jetpack</span>
+              <span class="pill">Coroutines</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Backend</div>
+            <div class="skill-pills">
+              <span class="pill">Python</span>
+              <span class="pill">FastAPI</span>
+              <span class="pill">Flask</span>
+              <span class="pill">Stripe API</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Frontend</div>
+            <div class="skill-pills">
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS3</span>
+              <span class="pill">Tailwind</span>
+              <span class="pill">JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">DevOps</div>
+            <div class="skill-pills">
+              <span class="pill">Git</span>
+              <span class="pill">Vercel</span>
+              <span class="pill">Railway</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- CTA BRIDGE -->
+  <section class="section" id="contribute">
+    <div class="container">
+      <div class="cta-bridge reveal">
+        <span class="section-tag">Apoie o Desenvolvimento</span>
+        <h2>Gostou do<br/><em>trabalho?</em></h2>
+        <p>
+          Seus apps são gratuitos porque acredito em software acessível.
+          Uma contribuição voluntária me ajuda a manter os servidores ligados
+          e reservar tempo para novas features.
+        </p>
+        <div class="cta-bridge-actions">
+          <a href="coffee/" class="btn btn-primary">☕ Comprar um café</a>
+          <a href="https://github.com/appskatostudio/katostudioapps" class="btn btn-ghost" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">KatoStudio <em>Apps</em></div>
+          <p class="footer-copy">© 2025 KatoStudio. Feito com Kotlin, Python e muito café.</p>
+        </div>
+        <div class="footer-links">
+          <a href="coffee/privacy.html">Privacidade</a>
+          <a href="coffee/terms.html">Termos</a>
+          <a href="mailto:contato@katostudio.dev">Contato</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${i * 0.08}s`;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
