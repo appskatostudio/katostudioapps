@@ -541,6 +541,17 @@
           <div class="tier-amount">R$50</div>
           <span class="tier-arrow">→</span>
         </a>
+        <div class="tier-card pix-card" onclick="copyPixKey()" id="pix-tier">
+          <div class="tier-card-left">
+            <span class="tier-emoji">🏦</span>
+            <div>
+              <div class="tier-label">Pix</div>
+              <div class="tier-sublabel" id="pix-sublabel">appskato@gmail.com</div>
+            </div>
+          </div>
+          <div class="tier-amount" style="font-size:13px;color:var(--text-2);font-family:var(--sans);font-weight:400;">Livre</div>
+          <span class="tier-arrow" id="pix-arrow" style="font-size:16px;">⎘</span>
+        </div>
       </div>
 
       <div class="payment-methods">
@@ -593,6 +604,17 @@
         card.classList.add('active');
       });
     });
+
+    function copyPixKey() {
+      navigator.clipboard.writeText('appskato@gmail.com').then(() => {
+        document.getElementById('pix-arrow').textContent = '✓';
+        document.getElementById('pix-sublabel').textContent = 'Chave copiada!';
+        setTimeout(() => {
+          document.getElementById('pix-arrow').textContent = '⎘';
+          document.getElementById('pix-sublabel').textContent = 'appskato@gmail.com';
+        }, 2500);
+      });
+    }
   </script>
 
 </body>
