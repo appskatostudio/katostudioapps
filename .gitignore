@@ -1,0 +1,10 @@
+# Ignorar tudo que não for .html, pastas, .gitignore, README e LICENSE
+*
+!*/
+!*.html
+!*.png
+!*.jpg
+!*.webp
+!.gitignore
+!README.md
+!LICENSE

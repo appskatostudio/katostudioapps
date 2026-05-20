@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoLens — Política de Privacidade</title>
+  <meta name="description" content="Política de Privacidade do GeoLens, leitor de metadados EXIF para Android. Seus dados ficam no seu dispositivo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0C0906;
+      --surface:      #161109;
+      --surface-2:    #1F180F;
+      --border:       #3A2C1E;
+      --border-light: #4E3D2A;
+      --text-1:       #EDE0C8;
+      --text-2:       #9E8060;
+      --text-3:       #5A4432;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Jost', system-ui, sans-serif;
+      --radius:       5px;
+      --accent:       #2dd4bf;
+      --accent-dim:   #2dd4bf15;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(12,9,6,0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-brand-left {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .nav-brand-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+      margin: 0 14px;
+    }
+
+    .nav-brand-right {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      color: var(--accent);
+    }
+
+    .nav-back {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text-2); }
+
+    /* HERO */
+    .page-hero {
+      padding: 80px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 560px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-3);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    /* ORNAMENTAL DIVIDER */
+    .orn-rule {
+      display: flex;
+      align-items: center;
+      padding: 4px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .orn-rule::before,
+    .orn-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .orn-rule-center {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 18px;
+    }
+
+    .orn-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border-light);
+    }
+
+    .orn-diamond {
+      width: 5px;
+      height: 5px;
+      background: var(--text-3);
+      transform: rotate(45deg);
+      opacity: 0.45;
+    }
+
+    /* POLICY SECTIONS */
+    .policy-section {
+      padding: 56px 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .policy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .policy-card {
+      background: var(--surface);
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+
+    .policy-card:last-child { border-bottom: none; }
+    .policy-card:hover { background: var(--surface-2); }
+
+    .policy-card-number {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0.6;
+      flex-shrink: 0;
+      width: 28px;
+      margin-top: 3px;
+    }
+
+    .policy-card-content h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text-1);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .policy-card-content p,
+    .policy-card-content li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 8px;
+    }
+
+    .policy-card-content ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .policy-card-content li::marker { color: var(--accent); }
+
+    .policy-card-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy-card-content a:hover { text-decoration: underline; }
+
+    .policy-card-content strong {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .policy-card-content em {
+      color: var(--text-2);
+      font-style: italic;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+
+    .footer-brand em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .page-hero { padding: 56px 0 40px; }
+      .policy-card { flex-direction: column; gap: 12px; padding: 22px 20px; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate { animation: fadeInUp 0.6s ease both; }
+    .animate:nth-child(1) { animation-delay: 0.05s; }
+    .animate:nth-child(2) { animation-delay: 0.15s; }
+    .animate:nth-child(3) { animation-delay: 0.25s; }
+    .animate:nth-child(4) { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">
+        <span class="nav-brand-left">KatoStudio</span>
+        <div class="nav-brand-divider"></div>
+        <span class="nav-brand-right">Apps</span>
+      </a>
+      <a href="../../" class="nav-back">← Portfolio</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag animate">GeoLens</span>
+      <h1 class="animate">Metadados visíveis.<br /><em>Dados seus, não nossos.</em></h1>
+      <p class="hero-sub animate">O GeoLens lê os dados EXIF das suas fotos localmente. Nada vai pra nenhum servidor.</p>
+      <div class="hero-meta animate">Atualizado em maio de 2026 · GeoLens v1.0</div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTAL DIVIDER -->
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- POLICY SECTIONS -->
+  <section class="policy-section">
+    <div class="container">
+      <div class="policy-grid">
+
+        <div class="policy-card">
+          <div class="policy-card-number">00</div>
+          <div class="policy-card-content">
+            <h2>Resumo direto</h2>
+            <p>O <strong>GeoLens</strong> lê os metadados EXIF das suas fotos diretamente no dispositivo. Nenhuma imagem ou dado é enviado para servidores externos.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">01</div>
+          <div class="policy-card-content">
+            <h2>Introdução</h2>
+            <p>O GeoLens é um aplicativo Android para visualização de metadados EXIF de imagens, desenvolvido por Gustavo Kato. Ele mostra coordenadas GPS, dados do dispositivo e parâmetros de câmera extraídos das fotos que você selecionar.</p>
+            <p><strong>Todo o processamento acontece no seu próprio dispositivo.</strong> O app não tem servidor e não transmite nada para a internet.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">02</div>
+          <div class="policy-card-content">
+            <h2>O que o app não faz</h2>
+            <ul>
+              <li>Não exige cadastro, login ou conta de usuário</li>
+              <li>Não envia imagens ou metadados para servidores externos</li>
+              <li>Não armazena suas fotos — lê apenas os metadados do arquivo selecionado</li>
+              <li>Não rastreia comportamento de uso nem coleta analytics</li>
+              <li>Não acessa microfone, câmera nativa ou contatos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">03</div>
+          <div class="policy-card-content">
+            <h2>Metadados lidos localmente</h2>
+            <p>Ao selecionar uma imagem, o GeoLens extrai e exibe <strong>somente no dispositivo</strong> os campos EXIF abaixo, quando presentes na foto:</p>
+            <ul>
+              <li><strong>Localização:</strong> latitude, longitude e altitude GPS</li>
+              <li><strong>Dispositivo:</strong> fabricante, modelo e software</li>
+              <li><strong>Data e hora:</strong> data e horário da captura</li>
+              <li><strong>Câmera:</strong> distância focal, abertura, ISO, exposição e flash</li>
+              <li><strong>Imagem:</strong> dimensões em pixels e megapixels</li>
+            </ul>
+            <p>Nenhum desses dados é salvo permanentemente pelo app nem transmitido para fora do dispositivo.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">04</div>
+          <div class="policy-card-content">
+            <h2>Integração com Google Maps</h2>
+            <p>Quando a foto tem coordenadas GPS, o app oferece um botão para abrir a localização no Google Maps. Isso é feito via <strong>deep link direto</strong> para o app Maps instalado no seu celular — sem SDK do Google Maps e sem transmissão de dados pelo GeoLens.</p>
+            <p>Ao abrir o Maps, a política de privacidade do Google passa a ser aplicável.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">05</div>
+          <div class="policy-card-content">
+            <h2>Permissões usadas</h2>
+            <ul>
+              <li><strong>READ_MEDIA_IMAGES / READ_EXTERNAL_STORAGE:</strong> permite selecionar uma imagem da galeria via Photo Picker nativo do Android. O app não varre nem indexa arquivos automaticamente.</li>
+              <li><strong>ACCESS_MEDIA_LOCATION:</strong> necessária no Android 10+ para que o sistema não remova os dados GPS da imagem antes de entregá-la ao app.</li>
+            </ul>
+            <p>O GeoLens não pede permissão de internet, câmera, microfone ou localização em tempo real.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">06</div>
+          <div class="policy-card-content">
+            <h2>Segurança</h2>
+            <p>Como não há transmissão de dados para servidores, o risco de exposição é mínimo. As imagens e seus metadados ficam integralmente no dispositivo durante toda a sessão de uso.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">07</div>
+          <div class="policy-card-content">
+            <h2>Menores de idade</h2>
+            <p>O GeoLens não é voltado a crianças menores de 13 anos e não coleta intencionalmente informações de menores.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">08</div>
+          <div class="policy-card-content">
+            <h2>Atualizações desta política</h2>
+            <p>Qualquer mudança será publicada aqui com a data de revisão atualizada. Vale a pena checar de vez em quando.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">09</div>
+          <div class="policy-card-content">
+            <h2>Contato</h2>
+            <p>Ficou com alguma dúvida? Fala comigo diretamente:</p>
+            <p><a href="mailto:appskato@gmail.com">appskato@gmail.com</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">KatoStudio <em>Apps</em></div>
+        <p class="footer-copy">© 2025 KatoStudio. Feito com Kotlin, Python e muito café.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../../">Portfolio</a>
+        <a href="mailto:appskato@gmail.com">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
