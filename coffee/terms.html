@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Termos de Uso — KatoStudio Apps. Condições para uso do site e da página de contribuição voluntária." />
+  <title>KatoStudio Apps — Termos de Uso</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0C0906;
+      --surface:      #161109;
+      --surface-2:    #1F180F;
+      --border:       #3A2C1E;
+      --border-light: #4E3D2A;
+      --accent:       #C98C4E;
+      --accent-dim:   #C98C4E15;
+      --text-1:       #EDE0C8;
+      --text-2:       #9E8060;
+      --text-3:       #5A4432;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Jost', system-ui, sans-serif;
+      --radius:       5px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.55; pointer-events: none; z-index: 0;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+    nav {
+      position: sticky; top: 0;
+      background: rgba(12,9,6,0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1060px; margin: 0 auto;
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+    .nav-brand-left { font-family: var(--sans); font-weight: 600; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-2); }
+    .nav-brand-divider { width: 1px; height: 20px; background: var(--border-light); margin: 0 14px; }
+    .nav-brand-right { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 19px; color: var(--accent); }
+
+    .nav-back { color: var(--text-3); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text-2); }
+
+    .page-hero { padding: 80px 0 56px; position: relative; z-index: 1; }
+
+    .section-tag { font-size: 11px; font-weight: 500; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .section-tag::before { content: ''; width: 18px; height: 1px; background: var(--accent); opacity: 0.7; }
+
+    h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(32px, 5vw, 56px); line-height: 1.08; letter-spacing: -0.015em; margin-bottom: 20px; }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub { font-size: 16px; font-weight: 300; color: var(--text-2); max-width: 560px; line-height: 1.85; margin-bottom: 14px; }
+    .hero-meta { font-size: 12px; color: var(--text-3); font-weight: 400; letter-spacing: 0.05em; }
+
+    .orn-rule { display: flex; align-items: center; padding: 4px 32px; position: relative; z-index: 1; }
+    .orn-rule::before, .orn-rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    .orn-rule-center { display: flex; align-items: center; gap: 7px; padding: 0 18px; }
+    .orn-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-light); }
+    .orn-diamond { width: 5px; height: 5px; background: var(--text-3); transform: rotate(45deg); opacity: 0.45; }
+
+    .policy-section { padding: 56px 0 88px; position: relative; z-index: 1; }
+
+    .summary-card {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 20px 28px;
+      font-size: 14px; font-weight: 400; color: var(--text-1);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+
+    .policy-grid { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+    .policy-card { background: var(--surface); padding: 28px 32px; border-bottom: 1px solid var(--border); display: flex; gap: 28px; align-items: flex-start; transition: background 0.2s; }
+    .policy-card:last-child { border-bottom: none; }
+    .policy-card:hover { background: var(--surface-2); }
+
+    .policy-card-number { font-family: var(--serif); font-size: 13px; font-weight: 600; color: var(--accent); opacity: 0.6; flex-shrink: 0; width: 28px; margin-top: 3px; }
+
+    .policy-card-content h2 { font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--text-1); margin-bottom: 10px; letter-spacing: -0.01em; }
+
+    .policy-card-content p,
+    .policy-card-content li { font-size: 14px; font-weight: 300; color: var(--text-2); line-height: 1.85; margin-bottom: 8px; }
+    .policy-card-content p:last-child { margin-bottom: 0; }
+
+    .policy-card-content ul { padding-left: 18px; margin-top: 4px; }
+    .policy-card-content li { margin-bottom: 6px; }
+    .policy-card-content li::marker { color: var(--accent); }
+
+    .policy-card-content a { color: var(--accent); text-decoration: none; }
+    .policy-card-content a:hover { text-decoration: underline; }
+    .policy-card-content strong { color: var(--text-1); font-weight: 500; }
+
+    footer { border-top: 1px solid var(--border); padding: 48px 0; position: relative; z-index: 1; }
+    .footer-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-brand { font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); margin-bottom: 6px; }
+    .footer-brand em { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 16px; letter-spacing: 0.01em; text-transform: none; color: var(--accent); }
+    .footer-copy { font-size: 13px; font-weight: 300; color: var(--text-3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-3); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .page-hero { padding: 56px 0 40px; }
+      .policy-card { flex-direction: column; gap: 12px; padding: 22px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../" class="nav-logo">
+        <span class="nav-brand-left">KatoStudio</span>
+        <div class="nav-brand-divider"></div>
+        <span class="nav-brand-right">Apps</span>
+      </a>
+      <a href="../" class="nav-back">← Portfolio</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag">KatoStudio Apps</span>
+      <h1>Termos<br/><em>de Uso.</em></h1>
+      <p class="hero-sub">Regras simples para usar este site e fazer uma contribuição. Sem letras miúdas desnecessárias.</p>
+      <div class="hero-meta">Última atualização: maio de 2026 · katostudioapps</div>
+    </div>
+  </section>
+
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div><div class="orn-diamond"></div><div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <section class="policy-section">
+    <div class="container">
+
+      <div class="summary-card">
+        Resumo: este site é um portfólio de apps Android. As contribuições são voluntárias, sem reembolso garantido e não desbloqueiam funcionalidades. Ao usar o site, você concorda com estes termos.
+      </div>
+
+      <div class="policy-grid">
+
+        <div class="policy-card">
+          <div class="policy-card-number">01</div>
+          <div class="policy-card-content">
+            <h2>Sobre o site</h2>
+            <p>O KatoStudio Apps (<em>appskatostudio.github.io/katostudioapps</em>) é mantido por Gustavo Kato, desenvolvedor independente. O site apresenta aplicativos Android publicados na Google Play e oferece uma forma de contribuição voluntária ao desenvolvedor.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">02</div>
+          <div class="policy-card-content">
+            <h2>Uso do site</h2>
+            <p>Este site pode ser acessado livremente para fins de informação sobre os apps disponíveis. Ao navegar pelo site, você concorda em não:</p>
+            <ul>
+              <li>Tentar comprometer a integridade ou disponibilidade do site</li>
+              <li>Usar o conteúdo do site para fins comerciais sem autorização</li>
+              <li>Reproduzir o design ou código-fonte sem crédito ao autor</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">03</div>
+          <div class="policy-card-content">
+            <h2>Contribuições voluntárias</h2>
+            <p>As contribuições feitas pela página de apoio são <strong>inteiramente voluntárias</strong>. Ao contribuir, você declara estar ciente de que:</p>
+            <ul>
+              <li>A contribuição não garante nenhuma contrapartida, produto ou serviço</li>
+              <li>Nenhuma funcionalidade nos apps é desbloqueada pelo pagamento</li>
+              <li>A contribuição não constitui contrato de prestação de serviços</li>
+              <li>O valor é destinado a apoiar o desenvolvimento independente de software</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">04</div>
+          <div class="policy-card-content">
+            <h2>Política de reembolso</h2>
+            <p>Por se tratar de uma contribuição voluntária sem entrega de produto ou serviço, reembolsos não são garantidos. Em caso de cobrança indevida ou erro de processamento, entre em contato em <a href="mailto:appskato@gmail.com">appskato@gmail.com</a> e analisaremos caso a caso.</p>
+            <p>Disputas de pagamento devem ser tratadas diretamente com o Stripe, plataforma responsável pelo processamento.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">05</div>
+          <div class="policy-card-content">
+            <h2>Processamento de pagamento</h2>
+            <p>Todas as transações são processadas pelo <strong>Stripe</strong>. Ao concluir uma contribuição, você também está sujeito aos <a href="https://stripe.com/br/legal/consumer" target="_blank" rel="noopener">Termos de Serviço do Stripe</a>. O KatoStudio não tem acesso aos seus dados de pagamento.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">06</div>
+          <div class="policy-card-content">
+            <h2>Aplicativos Android</h2>
+            <p>Os apps listados neste site são publicados na Google Play Store e estão sujeitos aos termos de uso da própria plataforma. O uso de cada app é regido pelas políticas de privacidade individuais disponíveis nas páginas de cada aplicativo.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">07</div>
+          <div class="policy-card-content">
+            <h2>Limitação de responsabilidade</h2>
+            <p>O KatoStudio não se responsabiliza por indisponibilidades temporárias do site, falhas de processamento de terceiros (Stripe, GitHub Pages) ou qualquer dano indireto decorrente do uso deste site.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">08</div>
+          <div class="policy-card-content">
+            <h2>Alterações nestes termos</h2>
+            <p>Estes termos podem ser atualizados a qualquer momento. A data de revisão no topo desta página indica a versão vigente. O uso continuado do site após alterações implica aceitação dos novos termos.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">09</div>
+          <div class="policy-card-content">
+            <h2>Contato</h2>
+            <p>Dúvidas sobre estes termos:</p>
+            <p><a href="mailto:appskato@gmail.com">appskato@gmail.com</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">KatoStudio <em>Apps</em></div>
+        <p class="footer-copy">© 2025 KatoStudio. Feito com Kotlin, Python e muito café.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../">Portfolio</a>
+        <a href="../privacy/katostudio/index.html">Privacidade</a>
+        <a href="mailto:appskato@gmail.com">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
