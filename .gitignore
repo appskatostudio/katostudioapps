@@ -4,6 +4,7 @@
 !*.html
 !*.png
 !*.jpg
+!*.jpeg
 !*.webp
 !.gitignore
 !README.md
