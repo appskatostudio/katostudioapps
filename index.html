@@ -1030,50 +1030,22 @@
     </div>
   </div>
 
-  <!-- APPS -->
-  <section class="section" id="apps">
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag">Portfólio</span>
-        <h2>Meus Aplicativos</h2>
+        <h2>Apps <em>&amp;</em> Jogos</h2>
         <p class="section-desc">Código limpo. Suporte de verdade. Sem sumir depois do lançamento.</p>
       </div>
 
-      <div class="apps-grid">
-        <div class="app-card reveal">
-          <div class="app-card-header">
-            <div class="app-icon" style="padding:0;overflow:hidden;">
-              <img src="assets/icons/pdfast_icon.png" alt="PDFast" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);" />
-            </div>
-            <div>
-              <div class="app-name">PDFast</div>
-              <div class="app-platform">Android · Google Play</div>
-            </div>
-          </div>
-          <p class="app-desc">
-            Leitor de PDF rápido com detecção de Prompt Injection em duas camadas embutida. Analisa texto visível e oculto em busca de instruções maliciosas — tudo no dispositivo, sem envio a servidores. Ideal para documentos jurídicos, corporativos e confidenciais.
-          </p>
-          <div class="app-tags">
-            <span class="tag">Kotlin</span>
-            <span class="tag">Offline</span>
-            <a href="https://appskatostudio.github.io/katostudioapps/privacy/pdfast/index.html" class="tag" style="color:var(--accent);border-color:var(--border-light);text-decoration:none;" target="_blank" rel="noopener">Privacy ↗</a>
-          </div>
-          <a href="#" class="app-link">Ver na Google Play</a>
-        </div>
-
-        <div class="app-card reveal" style="opacity:0.4; pointer-events:none;">
-          <div class="app-card-header">
-            <div class="app-icon" style="font-size:22px;color:var(--text-3);">+</div>
-            <div>
-              <div class="app-name" style="color:var(--text-3);">Em breve</div>
-              <div class="app-platform">Próximo lançamento</div>
-            </div>
-          </div>
-          <p class="app-desc" style="color:var(--text-3);">
-            Novo app em desenvolvimento. Acompanhe as atualizações.
-          </p>
-        </div>
+      <div class="filter-bar">
+        <button class="filter-pill active" onclick="setFilter('all', this)">Todos</button>
+        <button class="filter-pill" onclick="setFilter('app', this)">Apps</button>
+        <button class="filter-pill" onclick="setFilter('game', this)">Jogos</button>
       </div>
+
+      <div id="portfolio-grid" class="apps-grid"></div>
     </div>
   </section>
 
