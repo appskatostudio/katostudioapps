@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MazePaint Pro — Termos de Uso</title>
+  <meta name="description" content="Termos de Uso do MazePaint Pro. App gratuito, sem cadastro, sem rastreamento." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #08071A;
+      --surface:      #0F0D28;
+      --surface-2:    #16133A;
+      --border:       #2C2460;
+      --border-light: #3D3580;
+      --text-1:       #E8E0F8;
+      --text-2:       #8878C0;
+      --text-3:       #4A4080;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Jost', system-ui, sans-serif;
+      --radius:       5px;
+      --accent:       #27D8E4;
+      --accent-dim:   #27D8E415;
+      --pink:         #C2479C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(8,7,26,0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-brand-left {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .nav-brand-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+      margin: 0 14px;
+    }
+
+    .nav-brand-right {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      color: var(--accent);
+    }
+
+    .nav-back {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text-2); }
+
+    /* HERO */
+    .page-hero {
+      padding: 80px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 560px;
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-3);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border-light);
+      padding: 8px 20px;
+      border-radius: 40px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero-link:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+    }
+
+    .hero-link.secondary {
+      color: var(--text-2);
+    }
+
+    /* ORNAMENTAL DIVIDER */
+    .orn-rule {
+      display: flex;
+      align-items: center;
+      padding: 4px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .orn-rule::before,
+    .orn-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .orn-rule-center {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 18px;
+    }
+
+    .orn-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border-light);
+    }
+
+    .orn-diamond {
+      width: 5px;
+      height: 5px;
+      background: var(--text-3);
+      transform: rotate(45deg);
+      opacity: 0.45;
+    }
+
+    /* POLICY SECTIONS */
+    .policy-section {
+      padding: 56px 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .policy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .policy-card {
+      background: var(--surface);
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+
+    .policy-card:last-child { border-bottom: none; }
+    .policy-card:hover { background: var(--surface-2); }
+
+    .policy-card-number {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0.6;
+      flex-shrink: 0;
+      width: 28px;
+      margin-top: 3px;
+    }
+
+    .policy-card-content h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text-1);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .policy-card-content p,
+    .policy-card-content li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 8px;
+    }
+
+    .policy-card-content ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    .policy-card-content li::marker { color: var(--accent); }
+
+    .policy-card-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy-card-content a:hover { text-decoration: underline; }
+
+    .policy-card-content strong {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid var(--border-light);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+
+    .footer-brand em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--text-3);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .page-hero { padding: 56px 0 40px; }
+      .policy-card { flex-direction: column; gap: 12px; padding: 22px 20px; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate { animation: fadeInUp 0.6s ease both; }
+    .animate:nth-child(1) { animation-delay: 0.05s; }
+    .animate:nth-child(2) { animation-delay: 0.15s; }
+    .animate:nth-child(3) { animation-delay: 0.25s; }
+    .animate:nth-child(4) { animation-delay: 0.30s; }
+    .animate:nth-child(5) { animation-delay: 0.35s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">
+        <span class="nav-brand-left">KatoStudio</span>
+        <div class="nav-brand-divider"></div>
+        <span class="nav-brand-right">Apps</span>
+      </a>
+      <a href="../../" class="nav-back">← Portfolio</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag animate">MazePaint Pro</span>
+      <h1 class="animate">Regras simples,<br /><em>sem letras miúdas.</em></h1>
+      <p class="hero-sub animate">Gratuito, sem cadastro, sem rastreamento. Use o jogo como quiser — os dados são seus.</p>
+      <div class="hero-meta animate">Atualizado em junho de 2026 · MazePaint Pro v1.0.0</div>
+      <div class="hero-links animate">
+        <a href="index.html" class="hero-link secondary">← Política de Privacidade</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTAL DIVIDER -->
+  <div class="orn-rule">
+    <div class="orn-rule-center">
+      <div class="orn-dot"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-dot"></div>
+    </div>
+  </div>
+
+  <!-- TERMS CARDS -->
+  <section class="policy-section">
+    <div class="container">
+      <div class="policy-grid">
+
+        <div class="policy-card">
+          <div class="policy-card-number">00</div>
+          <div class="policy-card-content">
+            <div class="badge">Resumo</div>
+            <h2>Em poucas palavras</h2>
+            <p>O <strong>MazePaint Pro</strong> é um jogo gratuito de puzzle que não exige cadastro, não exibe anúncios e não coleta dados. Ao usar o app, você concorda com estes termos.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">01</div>
+          <div class="policy-card-content">
+            <h2>Aceitação dos Termos</h2>
+            <p>Ao utilizar o MazePaint Pro, você concorda com estes Termos de Uso em sua versão vigente. Se não concordar com algum ponto, por favor não utilize o aplicativo.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">02</div>
+          <div class="policy-card-content">
+            <h2>Descrição do Serviço</h2>
+            <p>O MazePaint Pro é um jogo de puzzle casual para Android em que o jogador desliza uma bola pelo labirinto até pintar 100% do chão. O uso é <strong>gratuito</strong> e não exige criação de conta ou cadastro de qualquer tipo.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">03</div>
+          <div class="policy-card-content">
+            <h2>Uso Permitido</h2>
+            <p>Você pode usar o MazePaint Pro para fins pessoais, educacionais e profissionais legais. É proibido:</p>
+            <ul>
+              <li>Qualquer uso que viole leis locais ou direitos de terceiros</li>
+              <li>Engenharia reversa, descompilação ou modificação do app</li>
+              <li>Distribuição não autorizada do aplicativo ou de seus recursos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">04</div>
+          <div class="policy-card-content">
+            <h2>Privacidade e Dados</h2>
+            <p>O MazePaint Pro <strong>não coleta, armazena nem transmite dados pessoais</strong>. O progresso do jogo (nível, pontuação, configurações) fica exclusivamente no seu dispositivo. Consulte nossa <a href="index.html">Política de Privacidade</a> para mais detalhes.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">05</div>
+          <div class="policy-card-content">
+            <h2>Propriedade Intelectual</h2>
+            <p>O código-fonte, design, marca, ícone e todos os ativos visuais do MazePaint Pro são propriedade de <strong>Gustavo Kato</strong>. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">06</div>
+          <div class="policy-card-content">
+            <h2>Conteúdo do Usuário</h2>
+            <p>O MazePaint Pro não permite criação nem compartilhamento de conteúdo por usuários. O progresso salvo localmente (pontuação, nível alcançado) é de sua propriedade exclusiva e o desenvolvedor não tem acesso a ele.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">07</div>
+          <div class="policy-card-content">
+            <h2>Anúncios</h2>
+            <p>A versão atual do MazePaint Pro <strong>não exibe anúncios</strong>. Nenhum SDK de publicidade está integrado. Caso isso mude em versões futuras, estes Termos serão atualizados com antecedência.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">08</div>
+          <div class="policy-card-content">
+            <h2>Disponibilidade do Serviço</h2>
+            <p>O MazePaint Pro funciona <strong>100% offline</strong> — não depende de servidores externos para jogar. O desenvolvedor não garante que o app estará disponível na Play Store indefinidamente, mas os dados locais permanecem no dispositivo mesmo que o app seja descontinuado.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">09</div>
+          <div class="policy-card-content">
+            <h2>Isenção de Garantias</h2>
+            <p>O MazePaint Pro é fornecido <em>"como está"</em>, sem garantias expressas ou implícitas de adequação a finalidade específica, ausência de erros ou compatibilidade com todos os dispositivos Android. O desenvolvedor se empenha em manter o app funcional e atualizado, mas não pode garantir operação ininterrupta.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">10</div>
+          <div class="policy-card-content">
+            <h2>Limitação de Responsabilidade</h2>
+            <p>O desenvolvedor não será responsável por danos diretos, indiretos, incidentais ou consequentes resultantes do uso ou da impossibilidade de uso do aplicativo, incluindo mas não se limitando a perda de progresso por desinstalação ou troca de dispositivo.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">11</div>
+          <div class="policy-card-content">
+            <h2>Links Externos</h2>
+            <p>O aplicativo pode conter links para sites externos (ex: página de apoio ao desenvolvedor). O desenvolvedor não é responsável pelo conteúdo, disponibilidade ou práticas de privacidade desses sites.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">12</div>
+          <div class="policy-card-content">
+            <h2>Modificações dos Termos</h2>
+            <p>Estes Termos podem ser atualizados a qualquer momento. A versão vigente estará sempre disponível dentro do aplicativo e nesta página, com a data de revisão atualizada. O uso continuado após alterações implica aceitação.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">13</div>
+          <div class="policy-card-content">
+            <h2>Legislação Aplicável</h2>
+            <p>Estes Termos são regidos pelas leis da <strong>República Federativa do Brasil</strong>. Fica eleito o foro da Comarca de Brasília/DF para dirimir eventuais controvérsias, sem prejuízo de outros foros admitidos por lei.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">14</div>
+          <div class="policy-card-content">
+            <h2>Menores de Idade</h2>
+            <p>O MazePaint Pro não é direcionado a menores de 13 anos. O uso por menores deve ocorrer com supervisão e autorização dos responsáveis legais. O app não coleta dados de nenhum usuário, independentemente da idade.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">15</div>
+          <div class="policy-card-content">
+            <h2>Rescisão</h2>
+            <p>O desenvolvedor reserva-se o direito de descontinuar o aplicativo a qualquer momento. Em caso de descontinuação, os dados locais do usuário (progresso, pontuação) permanecem no dispositivo e podem ser removidos manualmente via Configurações do Android.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <div class="policy-card-number">16</div>
+          <div class="policy-card-content">
+            <h2>Contato</h2>
+            <p>Para dúvidas, solicitações ou exercício de direitos relacionados a estes Termos:</p>
+            <p><strong>Gustavo Kato</strong> — <a href="mailto:appskato@gmail.com">appskato@gmail.com</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">KatoStudio <em>Apps</em></div>
+        <p class="footer-copy">© 2026 KatoStudio. Feito com Kotlin e muito café.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Privacidade</a>
+        <a href="../../">Portfolio</a>
+        <a href="mailto:appskato@gmail.com">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
