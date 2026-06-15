@@ -1176,18 +1176,200 @@
   </footer>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${i * 0.08}s`;
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+  /* ─── PORTFOLIO DATA ─── */
+  const portfolio = [
+    {
+      id: 'pdfast',
+      category: 'app',
+      name: 'PDFast',
+      platform: 'Android · Google Play',
+      icon: 'assets/icons/pdfast_icon.png',
+      preview: 'assets/screenshots/pdfast/01.png',
+      screenshots: [
+        'assets/screenshots/pdfast/01.png',
+        'assets/screenshots/pdfast/02.png',
+        'assets/screenshots/pdfast/03.png',
+        'assets/screenshots/pdfast/04.png',
+        'assets/screenshots/pdfast/05.png',
+        'assets/screenshots/pdfast/06.png',
+        'assets/screenshots/pdfast/07.png',
+        'assets/screenshots/pdfast/08.png',
+        'assets/screenshots/pdfast/09.png',
+        'assets/screenshots/pdfast/10.png',
+      ],
+      desc: 'Leitor de PDF rápido com detecção de Prompt Injection em duas camadas embutida. Analisa texto visível e oculto — tudo offline, sem envio a servidores.',
+      tags: ['Kotlin', 'Offline'],
+      features: ['100% Offline', 'Sem anúncios', 'Detecção Prompt Injection', 'Análise de texto oculto'],
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.pdfast.app',
+      privacyUrl: 'privacy/pdfast/index.html',
+    },
+    {
+      id: 'mazepaint',
+      category: 'game',
+      name: 'MazePaint',
+      platform: 'Android · Google Play',
+      icon: null,
+      preview: 'assets/screenshots/mazepaint/01.jpeg',
+      screenshots: [
+        'assets/screenshots/mazepaint/01.jpeg',
+        'assets/screenshots/mazepaint/02.jpeg',
+        'assets/screenshots/mazepaint/03.jpeg',
+        'assets/screenshots/mazepaint/04.jpeg',
+        'assets/screenshots/mazepaint/05.jpeg',
+        'assets/screenshots/mazepaint/06.jpeg',
+        'assets/screenshots/mazepaint/07.jpeg',
+      ],
+      desc: 'Jogo de labirinto com mecânica de pintura. Explore labirintos gerados proceduralmente, pinte seu caminho e resolva puzzles. Sem internet necessária.',
+      tags: ['Kotlin', 'Offline'],
+      features: ['Labirintos gerados', 'Mecânica de pintura', '100% Offline', 'Sem anúncios'],
+      playStoreUrl: '#',
+      privacyUrl: null,
+    },
+  ];
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+  /* ─── RENDER HELPERS ─── */
+  function renderCard(item) {
+    const iconHtml = item.icon
+      ? `<img src="${item.icon}" alt="${item.name}" onerror="this.parentElement.textContent='📄'">`
+      : `<span>🎮</span>`;
+
+    const badgeClass = item.category === 'game' ? 'card-category-badge badge-game' : 'card-category-badge';
+    const badgeLabel = item.category === 'game' ? 'Jogo' : 'App';
+    const tagsHtml = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    return `
+      <div class="app-card reveal" data-category="${item.category}" onclick="toggleCard('${item.id}', this)">
+        <div class="card-screenshot-preview">
+          <img src="${item.preview}" alt="${item.name}" loading="lazy">
+          <div class="screenshot-overlay"></div>
+          <div class="${badgeClass}">${badgeLabel}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="app-icon">${iconHtml}</div>
+            <div>
+              <div class="app-name">${item.name}</div>
+              <div class="app-platform">${item.platform}</div>
+            </div>
+          </div>
+          <p class="app-desc">${item.desc}</p>
+          <div class="card-footer">
+            <div class="app-tags">${tagsHtml}</div>
+            <div class="card-expand-btn">Ver mais <span class="expand-arrow">↓</span></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderShowcase(item) {
+    const screenshotsHtml = item.screenshots
+      .map(src => `<div class="screenshot-thumb"><img src="${src}" alt="${item.name}" loading="lazy"></div>`)
+      .join('');
+
+    const featuresHtml = item.features
+      .map(f => `<span class="feature-item">${f}</span>`)
+      .join('');
+
+    const isGameOrNoLink = item.playStoreUrl === '#';
+    const playBtnClass = item.category === 'game' ? 'btn btn-green btn-sm' : 'btn btn-primary btn-sm';
+    const playLabel = isGameOrNoLink ? 'Em breve na Google Play' : 'Ver na Google Play →';
+    const playDisabled = isGameOrNoLink ? ' style="opacity:0.5;pointer-events:none;"' : '';
+    const playTarget = isGameOrNoLink ? '' : ' target="_blank" rel="noopener"';
+
+    const privacyBtn = item.privacyUrl
+      ? `<a href="${item.privacyUrl}" class="btn-outline">Privacidade</a>`
+      : '';
+
+    return `
+      <div class="showcase-block" id="showcase-${item.id}" style="display:none;">
+        <div class="showcase-screenshots">${screenshotsHtml}</div>
+        <div class="showcase-footer">
+          <div class="showcase-features">${featuresHtml}</div>
+          <div class="showcase-actions">
+            <a href="${item.playStoreUrl}" class="${playBtnClass}"${playTarget}${playDisabled}>${playLabel}</a>
+            ${privacyBtn}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderPlaceholder() {
+    return `
+      <div class="app-card" style="opacity:0.3;pointer-events:none;">
+        <div class="card-screenshot-preview" style="display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);">
+          Em breve
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="app-icon" style="font-size:20px;color:var(--text-3);">+</div>
+            <div>
+              <div class="app-name" style="color:var(--text-3);">Em breve</div>
+              <div class="app-platform">Próximo lançamento</div>
+            </div>
+          </div>
+          <p class="app-desc" style="color:var(--text-3);">Novo projeto em desenvolvimento. Acompanhe as atualizações.</p>
+        </div>
+      </div>`;
+  }
+
+  /* ─── RENDER PORTFOLIO ─── */
+  function renderPortfolio(filterCat) {
+    const grid = document.getElementById('portfolio-grid');
+    grid.innerHTML = '';
+
+    portfolio.forEach(item => {
+      if (filterCat !== 'all' && item.category !== filterCat) return;
+      grid.insertAdjacentHTML('beforeend', renderCard(item));
+      grid.insertAdjacentHTML('beforeend', renderShowcase(item));
+    });
+
+    if (filterCat === 'all' || filterCat === 'app') {
+      grid.insertAdjacentHTML('beforeend', renderPlaceholder());
+    }
+
+    grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  /* ─── FILTER ─── */
+  function setFilter(cat, btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    renderPortfolio(cat);
+  }
+
+  /* ─── TOGGLE CARD ─── */
+  function toggleCard(id, card) {
+    const showcase = document.getElementById('showcase-' + id);
+    if (!showcase) return;
+
+    const isOpen = card.classList.contains('active');
+
+    document.querySelectorAll('.app-card.active').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.showcase-block').forEach(s => { s.style.display = 'none'; });
+
+    if (!isOpen) {
+      card.classList.add('active');
+      showcase.style.display = 'block';
+      setTimeout(() => showcase.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  /* ─── INTERSECTION OBSERVER ─── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${i * 0.08}s`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ─── INIT ─── */
+  renderPortfolio('all');
+</script>
 
 </body>
 </html>
